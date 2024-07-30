@@ -1,0 +1,21 @@
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    @layer components {
+        .underline-animation {
+            @apply relative inline-block;
+        }
+        .underline-animation::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease-in-out;
+        }
+        .underline-animation:hover::after {
+            width: 100%;
+        }
+    }
