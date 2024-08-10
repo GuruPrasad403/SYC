@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import 'react-chat-elements/dist/main.css';
-import { useRecoilState } from 'recoil';
-import { ChatAtoms, textAtom } from '../atoms/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { ChatAtoms,CreateidAtom, textAtom } from '../atoms/atom';
 import { useParams, useLocation } from 'react-router-dom';
 import socket from '../connections/socketcon';
 
@@ -61,12 +61,15 @@ const ChatMesg = ({ name, src, message, }) => {
 
 
 const TextArea = () => {
+    const data = useRecoilValue(CreateidAtom)
+    console.log("thiis is an "+data)
     const location = useLocation();
-    const { yourName, id } = location.state;
+    const { yourName, id } = data;
     const [textmessage, setTextMessage] = useRecoilState(textAtom);
     const [messages, setMessage] = useRecoilState(ChatAtoms);
     const params = useParams();
     const { userid } = params;
+    console.log(userid)
 
     useEffect(() => {
         socket.emit('room-id', id);
@@ -116,7 +119,7 @@ const TextArea = () => {
                     rows="1"
                     value={textmessage}
                     onChange={(e) => setTextMessage(e.target.value)}
-                    className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block mx-4 p-2.5 w-full  text-sm text-gray900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Your message..."
                 ></textarea>
                 <button type="submit" className="hover:text-white inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">

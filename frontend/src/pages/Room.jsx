@@ -1,7 +1,8 @@
 
 import { FunnelIcon } from "@heroicons/react/24/solid";
 import ChatPart from "../components/chat";
-import VideoConference from "../components/Video";
+import VideoConference from "../../src/components/VCTest";
+// import VideoConference from "../components/Video";
 
 export default function Room(){
     return (

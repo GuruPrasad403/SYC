@@ -6,8 +6,8 @@ import Mainpage from './components/Mainpage';
 import Forgetpassword from './components/Forgetpassword';
 import ChatPart from './components/chat';
 import { RecoilRoot } from 'recoil';
-import Profile from './components/Profile';
-import VideoConference from './components/Video';
+import Profile from './pages/Profile';
+import VideoConference from '../src/components/VCTest';
 import Room from './pages/Room';
 
 
@@ -23,6 +23,7 @@ function App() {
         <Route path='/mainpage' element={<Mainpage/>} />
         <Route path='/chat/:userid' element={<Room/>}/>
         <Route path='/profile/' element={<Profile/>}/>
+        <Route path='/vcTest/' element={<VideoConference/>}/>
       </Routes>
     </Router>
     </RecoilRoot>
